@@ -1,0 +1,166 @@
+Script started on 2024-06-20 23:08:32-07:00 [COMMAND="/bin/bash" TERM="xterm-kitty" TTY="/dev/pts/0" COLUMNS="192" LINES="53"]
+[?2004h]0;sneo@rog: ~/code/art-of-expoit/codesneo@rog:~/code/art-of-expoit/code$ gdb -q a.out
+[?2004lReading symbols from [32ma.out[m...
+[?2004h(gdb) disassemble main
+[?2004lDump of assembler code for function [33mmain[m:
+   [34m0x0000000000001149[m <+0>:	[32mendbr64[m
+   [34m0x000000000000114d[m <+4>:	[32mpush   [m[31mrbp[m
+   [34m0x000000000000114e[m <+5>:	[32mmov    [m[31mrbp[m,[31mrsp[m
+   [34m0x0000000000001151[m <+8>:	[32msub    [m[31mrsp[m,[34m0x10[m
+   [34m0x0000000000001155[m <+12>:	[32mmov    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x0[m
+   [34m0x000000000000115c[m <+19>:	[32mjmp    [m[34m0x1171[m <[33mmain[m+40>
+   [34m0x000000000000115e[m <+21>:	[32mlea    [m[31mrax[m,[[31mrip[m+[34m0xe9f[m][37;2m        # [m[37;2m0x2004[m
+   [34m0x0000000000001165[m <+28>:	[32mmov    [m[31mrdi[m,[31mrax[m
+   [34m0x0000000000001168[m <+31>:	[32mcall   [m[34m0x1050[m <[33mputs@plt[m>
+   [34m0x000000000000116d[m <+36>:	[32madd    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x1[m
+   [34m0x0000000000001171[m <+40>:	[32mcmp    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x9[m
+   [34m0x0000000000001175[m <+44>:	[32mjle    [m[34m0x115e[m <[33mmain[m+21>
+   [34m0x0000000000001177[m <+46>:	[32mmov    [m[31meax[m,[34m0x0[m
+   [34m0x000000000000117c[m <+51>:	[32mleave[m
+   [34m0x000000000000117d[m <+52>:	[32mret[m
+End of assembler dump.
+[?2004h(gdb) break main
+[?2004lBreakpoint 1 at [34m0x1155[m: file [32mfirstprog.c[m, line 5.
+[?2004h(gdb) run
+[?2004lStarting program: [32m/home/sneo/code/art-of-expoit/code/a.out[m 
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <[32mhttps://debuginfod.ubuntu.com[m>
+[?2004hEnable debuginfod for this session? (y or [n]) n
+[?2004lDebuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "[32m/lib/x86_64-linux-gnu/libthread_db.so.1[m".
+
+Breakpoint 1, [33mmain[m () at [32mfirstprog.c[m:5
+5	    [01;34mfor[m[31m([mi[31m=[m[35m0[m[31m;[m i[31m<[m[35m10[m[31m;[m i[31m++)[m [31m{[m
+[?2004h[?2004l[?2004h(gdb) infor [K[K register epi[K[Kip
+[?2004lInvalid register `eip'
+[?2004h(gdb) info register $eip[K[K[K[Krip
+[?2004lrip            0x555555555155      0x555555555155 <main+12>
+[?2004h(gdb) ir [K[K r rip
+[?2004lrip            0x555555555155      0x555555555155 <main+12>
+[?2004h(gdb) x/o [7m0x555555555155[27m[C[C[C[C[C[C[C[C[C[C0x555555555155
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	077042707
+[?2004h(gdb) x/x $rip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	0x00fc45c7
+[?2004h(gdb) xx/[K[K/u $rip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	16532935
+[?2004h(gdb) x/t $rup
+[?2004lValue can't be converted to integer.
+[?2004h(gdb) x/t $rup[K[Kip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	00000000111111000100010111000111
+[?2004h(gdb) x/r[K2x  $rip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	0x00fc45c7	0xeb000000
+[?2004h(gdb) x/8xb $rip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	0xc7	0x45	0xfc	0x00	0x00	0x00	0x00	0xeb
+[?2004h(gdb) x/8xh $rip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	0x45c7	0x00fc	0x0000	0xeb00	0x4813	0x058d	0x0e9f	0x0000
+[?2004h(gdb) x/8xw $rip
+[?2004l[34m0x555555555155[m <[33mmain[m+12>:	0x00fc45c7	0xeb000000	0x058d4813	0x00000e9f
+[34m0x555555555165[m <[33mmain[m+28>:	0xe8c78948	0xfffffee3	0x01fc4583	0x09fc7d83
+[?2004h(gdb) i r [K[K[K[Kx r [K[K/[K[K/i $ei[K[Krip
+[?2004l=> [34m0x555555555155[m <[33mmain[m+12>:	[32mmov    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x0[m
+[?2004h(gdb) x/[K[Ki r rbp
+[?2004lrbp            0x7fffffffd950      0x7fffffffd950
+[?2004h(gdb) x/4c[Kxb $rbp-4
+[?2004l[34m0x7fffffffd94c[m:	0xff	0x7f	0x00	0x00
+[?2004h(gdb) x/4xb [7m0x7fffffffd950[27m[C[C[C[C[C[C[C[C[C[C[C[C0x7fffffffd950[K[K4c
+[?2004l[34m0x7fffffffd94c[m:	0xff	0x7f	0x00	0x00
+[?2004h(gdb) print $ebp-4
+[?2004l[36m$1[m = -9908
+[?2004h(gdb) print $e[Krbp-4
+[?2004l[36m$2[m = (void *[36m[m) [34m0x7fffffffd94c[m
+[?2004h(gdb) x/4xb $1
+[?2004l[34m0xffffffffffffd94c[m:	Cannot access memory at address 0xffffffffffffd94c
+[?2004h(gdb) x/4xb $2
+[?2004l[34m0x7fffffffd94c[m:	0xff	0x7f	0x00	0x00
+[?2004h(gdb) nexti [K
+[?2004l5	    [01;34mfor[m[31m([mi[31m=[m[35m0[m[31m;[m i[31m<[m[35m10[m[31m;[m i[31m++)[m [31m{[m
+[?2004h[?2004l[?2004h(gdb) x/4xb $1
+[?2004l[34m0xffffffffffffd94c[m:	Cannot access memory at address 0xffffffffffffd94c
+[?2004h(gdb) x/4xb $1[K2
+[?2004l[34m0x7fffffffd94c[m:	0x00	0x00	0x00	0x00
+[?2004h(gdb) x/d2 [K[Kw $2
+[?2004l[34m0x7fffffffd94c[m:	0
+[?2004h(gdb) x/[K[Kx/i $rip
+[?2004l=> [34m0x55555555515c[m <[33mmain[m+19>:	[32mjmp    [m[34m0x555555555171[m <[33mmain[m+40>
+[?2004h(gdb) x/[K[K/2[K[Kx/2i $rip
+[?2004l=> [34m0x55555555515c[m <[33mmain[m+19>:	[32mjmp    [m[34m0x555555555171[m <[33mmain[m+40>
+   [34m0x55555555515e[m <[33mmain[m+21>:	[32mlea    [m[31mrax[m,[[31mrip[m+[34m0xe9f[m][37;2m        # [m[37;2m0x555555556004[m
+[?2004h(gdb) nexti[K[K[K[K[Knexti
+[?2004l[34m0x0000555555555171[m	5	    [01;34mfor[m[31m([mi[31m=[m[35m0[m[31m;[m i[31m<[m[35m10[m[31m;[m i[31m++)[m [31m{[m
+[?2004h[?2004l[?2004h(gdb) x/2i $rip
+[?2004l=> [34m0x555555555171[m <[33mmain[m+40>:	[32mcmp    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x9[m
+   [34m0x555555555175[m <[33mmain[m+44>:	[32mjle    [m[34m0x55555555515e[m <[33mmain[m+21>
+[?2004h(gdb) nexti
+[?2004l[34m0x0000555555555175[m	5	    [01;34mfor[m[31m([mi[31m=[m[35m0[m[31m;[m i[31m<[m[35m10[m[31m;[m i[31m++)[m [31m{[m
+[?2004h[?2004l[?2004h(gdb) nexi[Kti
+[?2004l6	        [01mprintf[m[31m([m[31m"Hello World![m[35m\n[m[31m"[m[31m);[m
+[?2004h[?2004l[?2004h(gdb) x/i[K2i $rip
+[?2004l=> [34m0x55555555515e[m <[33mmain[m+21>:	[32mlea    [m[31mrax[m,[[31mrip[m+[34m0xe9f[m][37;2m        # [m[37;2m0x555555556004[m
+   [34m0x555555555165[m <[33mmain[m+28>:	[32mmov    [m[31mrdi[m,[31mrax[m
+[?2004h(gdb) disassemble main
+[?2004lDump of assembler code for function [33mmain[m:
+   [34m0x0000555555555149[m <+0>:	[32mendbr64[m
+   [34m0x000055555555514d[m <+4>:	[32mpush   [m[31mrbp[m
+   [34m0x000055555555514e[m <+5>:	[32mmov    [m[31mrbp[m,[31mrsp[m
+   [34m0x0000555555555151[m <+8>:	[32msub    [m[31mrsp[m,[34m0x10[m
+   [34m0x0000555555555155[m <+12>:	[32mmov    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x0[m
+   [34m0x000055555555515c[m <+19>:	[32mjmp    [m[34m0x555555555171[m <[33mmain[m+40>
+=> [34m0x000055555555515e[m <+21>:	[32mlea    [m[31mrax[m,[[31mrip[m+[34m0xe9f[m][37;2m        # [m[37;2m0x555555556004[m
+   [34m0x0000555555555165[m <+28>:	[32mmov    [m[31mrdi[m,[31mrax[m
+   [34m0x0000555555555168[m <+31>:	[32mcall   [m[34m0x555555555050[m <[33mputs@plt[m>
+   [34m0x000055555555516d[m <+36>:	[32madd    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x1[m
+   [34m0x0000555555555171[m <+40>:	[32mcmp    [mDWORD PTR [[31mrbp[m[34m-[m[34m0x4[m],[34m0x9[m
+   [34m0x0000555555555175[m <+44>:	[32mjle    [m[34m0x55555555515e[m <[33mmain[m+21>
+   [34m0x0000555555555177[m <+46>:	[32mmov    [m[31meax[m,[34m0x0[m
+   [34m0x000055555555517c[m <+51>:	[32mleave[m
+   [34m0x000055555555517d[m <+52>:	[32mret[m
+End of assembler dump.
+[?2004h(gdb) x/i $rip[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[Kx/i [K[K[K[Ki r rip
+[?2004lrip            0x55555555515e      0x55555555515e <main+21>
+[?2004h(gdb) x/i rip[K[K[KR[KR[K$rip+-x[K[K0xe9f
+[?2004l   [34m0x555555555ffd[m:	[32madd    [mBYTE PTR [[31mrax[m],[31mal[m
+[?2004h(gdb) x/i $rip+0xe9f[C[C[1P $rip+0xe9f[C[C[C[C[C[C[C[Cw $rip+0xe9f[C[C[C[C[C[C[C[C[Cx $rip+0xe9f[1P $rip+0xe9f[C[C[C[C[C[C[C[C[C[1P $rip+0xe9f[C[C[C[C[C[C[C[C6 $rip+0xe9f[C[C[C[C[C[C[C[C[Cu $rip+0xe9fb $rip+0xe9f
+[?2004l[34m0x555555555ffd[m:	0	0	0	1	0	2
+[?2004h(gdb) ne[K[Knexti[K[K[K[K[Kx/i [K[Kw rax
+[?2004lNo symbol "rax" in current context.
+[?2004h(gdb) x/w rax$rax
+[?2004l[34m0x555555555149[m <[33mmain[m>:	4196274163
+[?2004h(gdb) x/w $raxx $rax
+[?2004l[34m0x555555555149[m <[33mmain[m>:	0xfa1e0ff3
+[?2004h(gdb) nexti
+[?2004l[34m0x0000555555555165[m	6	        [01mprintf[m[31m([m[31m"Hello World![m[35m\n[m[31m"[m[31m);[m
+[?2004h[?2004l[?2004h(gdb) x/wx $rax
+[?2004l[34m0x555555556004[m:	0x6c6c6548
+[?2004h(gdb) x/6ub $rax
+[?2004l[34m0x555555556004[m:	72	101	108	108	111	32
+[?2004h(gdb) x/s $rax
+[?2004l[34m0x555555556004[m:	"Hello World!"
+[?2004h(gdb) nexti
+[?2004l[34m0x0000555555555168[m	6	        [01mprintf[m[31m([m[31m"Hello World![m[35m\n[m[31m"[m[31m);[m
+[?2004h[?2004l[?2004h(gdb) nexti
+[?2004lHello World!
+5	    [01;34mfor[m[31m([mi[31m=[m[35m0[m[31m;[m i[31m<[m[35m10[m[31m;[m i[31m++)[m [31m{[m
+[?2004h[?2004l[?2004h(gdb) run
+[?2004l[?2004hThe program being debugged has been started already.
+Start it from the beginning? (y or n) n
+[?2004lProgram not restarted.
+[?2004h(gdb) continue
+[?2004lContinuing.
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+Hello World!
+[Inferior 1 (process 5196) exited normally]
+[?2004h[?2004l[?2004h(gdb) exit
+[?2004l[?2004h]0;sneo@rog: ~/code/art-of-expoit/codesneo@rog:~/code/art-of-expoit/code$ exit
+[?2004lexit
+
+Script done on 2024-06-20 23:39:41-07:00 [COMMAND_EXIT_CODE="0"]
